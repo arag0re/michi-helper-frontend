@@ -1,25 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+import './App.css'
+import React, { useState, useEffect } from 'react'
+import { CustomersTable } from './components'
+import { addCustomer, getCustomers } from './api/api'
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+   const [customerData, setCustomerData] = useState([])
+
+   const handleAddCustomer = async (event) => {
+      const input = document.getElementById('customer-name-input').value
+      if (input === '') {
+         console.log('empty username-input')
+         return
+      }
+      await addCustomer(input)
+      // Fetch the updated customer data and set the state variable
+      const updatedData = await getCustomers()
+      setCustomerData(updatedData)
+   }
+
+   useEffect(() => {
+      const fetchCustomers = async () => {
+         const customers = await getCustomers()
+         setCustomerData(customers)
+      }
+      fetchCustomers()
+      console.log(customerData)
+   }, [])
+
+   return (
+      <div className="App">
+         <header className="App-header">
+            <input type="text" id="customer-name-input" />
+            <nobr />
+            <button onClick={handleAddCustomer}>add Customer</button>
+            <CustomersTable customerData={customerData} />
+         </header>
+      </div>
+   )
 }
 
-export default App;
+export default App
