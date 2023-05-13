@@ -7,12 +7,13 @@ function App() {
    const [customerData, setCustomerData] = useState([])
    const customerNameInputRef = useRef(null)
    const handleAddCustomer = async (event) => {
-      const input = customerNameInputRef.current.value
+      var input = customerNameInputRef.current.value
       if (input === '') {
          console.log('empty username-input')
          return
       }
       await addCustomer(input)
+      input = ''
       // Fetch the updated customer data and set the state variable
       const updatedData = await getCustomers()
       setCustomerData(updatedData)
@@ -30,15 +31,15 @@ function App() {
    return (
       <div className="App">
          <header className="App-header">
-            <div id="add-customer-container">
+            <div className="add-customer-form">
                <input
                   ref={customerNameInputRef}
                   type="text"
-                  id="add-customer-input"
-                  placeholder='Customer Name'
+                  className="add-customer-input"
+                  placeholder="Customer Name"
                />
-               <button id="add-customer-button" onClick={handleAddCustomer}>
-                  add Customer
+               <button className="add-customer-button" onClick={handleAddCustomer}>
+                  Add
                </button>
             </div>
 

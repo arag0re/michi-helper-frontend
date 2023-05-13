@@ -8,5 +8,5 @@ export function formatDate(dateString) {
       minute: 'numeric',
       second: 'numeric',
    }
-   return date.toLocaleDateString("de-DE", options)
+   return date.toLocaleDateString('de-DE', options)
 }

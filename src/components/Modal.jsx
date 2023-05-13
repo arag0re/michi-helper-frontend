@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { getApps, addApp, updateApp } from '../api/api'
+import { getApps, addApp, updateApp, deleteApp } from '../api/api'
+import deleteImg from '../assets/delete.png'
+import refreshImg from '../assets/refresh.png'
 import { formatDate } from '../utils/formatDate'
-import './Modal.css'
 
-function Modal({ onClose, customer, onRefresh }) {
+function Modal({ onClose, customer }) {
    const [apps, setApps] = useState([])
    const appNameInputRef = useRef(null)
 
@@ -23,19 +24,29 @@ function Modal({ onClose, customer, onRefresh }) {
       setApps(updatedApps)
    }
 
+   const handleDeleteApp = async (name) => {
+      await deleteApp(name, customer)
+      const apps = await getApps(customer)
+      setApps(apps)
+   }
+
+   const handleCloseModal = () => {
+      onClose()
+   }
+
    return (
       <div className="modal">
          <div className="modal-content">
-            <button className="close-button" onClick={onClose}>
+            <button className="close-button" onClick={handleCloseModal}>
                &times;
             </button>
             <h2>{customer}'s Apps</h2>
             <table>
                <thead>
                   <tr>
-                     <th>Name</th>
-                     <th>Last Updated</th>
-                     <th>Update</th>
+                     <th>App Name</th>
+                     <th>Last Update</th>
+                     <th></th>
                   </tr>
                </thead>
                <tbody>
@@ -46,11 +57,27 @@ function Modal({ onClose, customer, onRefresh }) {
                              <td>{formatDate(app.lastUpdated)}</td>
                              <td>
                                 <button
+                                   className="refresh-btn"
                                    onClick={() =>
                                       handleUpdateLastUpdated(app.name)
                                    }
                                 >
-                                   Update Now
+                                   <img
+                                      id="refresh-img"
+                                      src={refreshImg}
+                                      alt="refresh"
+                                   />
+                                </button>
+                                <br></br>
+                                <button
+                                   className="delete-btn"
+                                   onClick={() => handleDeleteApp(app.name)}
+                                >
+                                   <img
+                                      id="delete-img"
+                                      src={deleteImg}
+                                      alt="delete"
+                                   />
                                 </button>
                              </td>
                           </tr>
@@ -60,12 +87,12 @@ function Modal({ onClose, customer, onRefresh }) {
             </table>
             <div id="add-app-container">
                <input
-                  id="app-name-input"
+                  className="app-name-input"
                   ref={appNameInputRef}
                   placeholder="App Name"
                ></input>
                <button
-                  id="add-app-button"
+                  className="add-app-button"
                   onClick={async () => {
                      const appNameInput = appNameInputRef.current.value
 
@@ -78,7 +105,7 @@ function Modal({ onClose, customer, onRefresh }) {
                      setApps((apps) => [...apps, newApp])
                   }}
                >
-                  Add App
+                  Add
                </button>
             </div>
          </div>
