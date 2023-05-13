@@ -67,3 +67,22 @@ export async function addApp(name, customerName) {
          console.log(err)
       })
 }
+
+export async function updateApp(name, customerName) {
+   const data = { name, customerName }
+   return await fetch('/app/updateApp', {
+      method: 'POST',
+      headers: {
+         'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+   })
+      .then((response) => response.json())
+      .then((data) => {
+         console.log(data)
+         return data
+      })
+      .catch((err) => {
+         console.log(err)
+      })
+}

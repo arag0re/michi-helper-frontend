@@ -1,13 +1,13 @@
 import './App.css'
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { CustomersTable } from './components'
 import { addCustomer, getCustomers } from './api/api'
 
 function App() {
    const [customerData, setCustomerData] = useState([])
-
+   const customerNameInputRef = useRef(null)
    const handleAddCustomer = async (event) => {
-      const input = document.getElementById('customer-name-input').value
+      const input = customerNameInputRef.current.value
       if (input === '') {
          console.log('empty username-input')
          return
@@ -30,9 +30,18 @@ function App() {
    return (
       <div className="App">
          <header className="App-header">
-            <input type="text" id="customer-name-input" />
-            <nobr />
-            <button onClick={handleAddCustomer}>add Customer</button>
+            <div id="add-customer-container">
+               <input
+                  ref={customerNameInputRef}
+                  type="text"
+                  id="add-customer-input"
+                  placeholder='Customer Name'
+               />
+               <button id="add-customer-button" onClick={handleAddCustomer}>
+                  add Customer
+               </button>
+            </div>
+
             <CustomersTable customerData={customerData} />
          </header>
       </div>
