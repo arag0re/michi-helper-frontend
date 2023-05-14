@@ -2,7 +2,7 @@ export async function getCustomers() {
    return await fetch('/api/customer/getAll')
       .then((response) => response.json())
       .then((data) => {
-         console.log(data)
+         //console.log(data)
          return data
       })
       .catch((err) => {
@@ -38,7 +38,7 @@ export async function deleteCustomer(name) {
    })
       .then((response) => response.json())
       .then((data) => {
-         console.log(data)
+         //console.log(data)
          return data
       })
       .catch((err) => {
@@ -58,7 +58,7 @@ export async function getApps(customerName) {
    })
       .then((response) => response.json())
       .then((data) => {
-         console.log(data)
+         //console.log(data)
          return data
       })
       .catch((err) => {
@@ -77,7 +77,7 @@ export async function addApp(name, customerName) {
    })
       .then((response) => response.json())
       .then((data) => {
-         console.log(data)
+         //console.log(data)
          return data
       })
       .catch((err) => {
@@ -96,7 +96,7 @@ export async function updateApp(name, customerName) {
    })
       .then((response) => response.json())
       .then((data) => {
-         console.log(data)
+         //console.log(data)
          return data
       })
       .catch((err) => {
@@ -115,7 +115,7 @@ export async function getApp(appId) {
    })
       .then((response) => response.json())
       .then((data) => {
-         console.log(data)
+         //console.log(data)
          return data
       })
       .catch((err) => {
@@ -134,7 +134,7 @@ export async function deleteApp(name, customerName) {
    })
       .then((response) => response.json())
       .then((data) => {
-         console.log(data)
+         //console.log(data)
          return data
       })
       .catch((err) => {
