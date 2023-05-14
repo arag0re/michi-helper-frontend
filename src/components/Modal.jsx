@@ -103,7 +103,9 @@ function Modal({ onClose, customer }) {
 
                      const newApp = await addApp(appNameInput, customer)
                      if (!newApp) {
-                        alert('App already exists for this Customer')
+                        alert(
+                           appNameInput + ' already exists for this Customer',
+                        )
                         return
                      }
                      setApps((apps) => [...apps, newApp])

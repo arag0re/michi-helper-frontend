@@ -5,23 +5,29 @@ import { addCustomer, getCustomers } from './api/api'
 
 function App() {
    const [customerData, setCustomerData] = useState([])
+   const [customerName, setCustomerName] = useState('')
    const customerNameInputRef = useRef(null)
+
    const handleAddCustomer = async (event) => {
-      var input = customerNameInputRef.current.value
-      if (input === '') {
+      event.preventDefault()
+
+      if (customerName === '') {
          console.log('empty username-input')
+         alert('Empty input-field')
          return
       }
 
       try {
-         const statusCode = await addCustomer(input)
+         const statusCode = await addCustomer(customerName)
          switch (statusCode) {
             case 409:
                alert('Customer already exists')
-               return
+               setCustomerName('') // Clear the input field
+               break
             case 200:
                const updatedData = await getCustomers()
                setCustomerData(updatedData)
+               setCustomerName('') // Clear the input field
                break
             default:
                break
@@ -43,20 +49,23 @@ function App() {
    return (
       <div className="App">
          <header className="App-header">
-            <div className="add-customer-form">
+            <form className="add-customer-form" onSubmit={handleAddCustomer}>
                <input
-                  ref={customerNameInputRef}
                   type="text"
                   className="add-customer-input"
                   placeholder="Customer Name"
+                  value={customerName}
+                  onChange={(event) => setCustomerName(event.target.value)}
+                  ref={customerNameInputRef}
                />
                <button
+                  type="submit"
                   className="add-customer-button"
                   onClick={handleAddCustomer}
                >
                   Add
                </button>
-            </div>
+            </form>
 
             <CustomersTable customerData={customerData} />
          </header>
