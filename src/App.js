@@ -1,6 +1,6 @@
 import './App.css'
-import React, { useState, useEffect, useRef } from 'react'
-import { CustomersTable } from './components'
+import React, { useState, useEffect, useRef, Router } from 'react'
+import { CustomersTable, Footer } from './components'
 import { addCustomer, getCustomers } from './api/api'
 
 function App() {
@@ -47,29 +47,32 @@ function App() {
    }, [])
 
    return (
-      <div className="App">
-         <header className="App-header">
-            <form className="add-customer-form" onSubmit={handleAddCustomer}>
-               <input
-                  type="text"
-                  className="add-customer-input"
-                  placeholder="Customer Name"
-                  value={customerName}
-                  onChange={(event) => setCustomerName(event.target.value)}
-                  ref={customerNameInputRef}
-               />
-               <button
-                  type="submit"
-                  className="add-customer-button"
-                  onClick={handleAddCustomer}
-               >
-                  Add
-               </button>
-            </form>
+      <>
+         <div className="App">
+            <header className="App-header">
+               <form className="add-customer-form" onSubmit={handleAddCustomer}>
+                  <input
+                     type="text"
+                     className="add-customer-input"
+                     placeholder="Customer Name"
+                     value={customerName}
+                     onChange={(event) => setCustomerName(event.target.value)}
+                     ref={customerNameInputRef}
+                  />
+                  <button
+                     type="submit"
+                     className="add-customer-button"
+                     onClick={handleAddCustomer}
+                  >
+                     Add
+                  </button>
+               </form>
 
-            <CustomersTable customerData={customerData} />
-         </header>
-      </div>
+               <CustomersTable customerData={customerData} />
+            </header>
+         </div>
+         <Footer />
+      </>
    )
 }
 

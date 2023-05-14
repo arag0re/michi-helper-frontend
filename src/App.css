@@ -111,30 +111,7 @@ display: flex;
   transition: background-color 0.3s ease-in-out;
 }
 
-.modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 
-.modal-content {
-  background-color: white;
-  color: rgba(0, 0, 0, 0.5);
-  border-radius: 10px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
-  padding: 20px;
-  position: relative;
-  width: 80%;
-  max-width: 500px;
-  max-height: 80%;
-  overflow: auto;
-}
 
 .close-button {
   position: absolute;
@@ -163,9 +140,13 @@ display: flex;
 .app-name-input {
   flex: 1;
   height: 18px;
-  width: 55%;
+  width: 70%;
   padding: 10px;
   border-radius: 5px 0 0 5px;
+}
+
+#add-app-container {
+  width: 100%;
 }
 
 .add-app-button {
@@ -186,4 +167,71 @@ display: flex;
 
 #td-buttons {
   text-align: end;
+}
+
+.modal {
+  background-color: white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background-color: white;
+  color: rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  padding: 20px;
+  position: relative;
+  width: 80%;
+  /*max-width: 700px;*/
+  max-height: 80%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+#modal-header {
+  padding-top: 20px;
+  padding-bottom: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  background-color: white;
+  color: rgba(0, 0, 0, 0.5);;
+  background-color: white;
+  z-index: 1;
+}
+
+#modal-table {
+  overflow: scroll;
+  flex: 0;
+}
+
+table {
+  width: 100%;
+}
+
+thead th {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+#modal-table thead {
+  position: sticky;
+  top: 0;
+  background-color: white;
+}
+
+#modal-table body {
+  overflow: auto;
+  flex: 0;
+  background-color: white;
 }
