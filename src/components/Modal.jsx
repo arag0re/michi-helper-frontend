@@ -55,7 +55,7 @@ function Modal({ onClose, customer }) {
                           <tr id="apps" key={app.id}>
                              <td>{app.name}</td>
                              <td>{formatDate(app.lastUpdated)}</td>
-                             <td>
+                             <td id="td-buttons">
                                 <button
                                    className="refresh-btn"
                                    onClick={() =>
@@ -102,6 +102,10 @@ function Modal({ onClose, customer }) {
                      }
 
                      const newApp = await addApp(appNameInput, customer)
+                     if (!newApp) {
+                        alert('App already exists for this Customer')
+                        return
+                     }
                      setApps((apps) => [...apps, newApp])
                   }}
                >

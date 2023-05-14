@@ -12,11 +12,23 @@ function App() {
          console.log('empty username-input')
          return
       }
-      await addCustomer(input)
-      input = ''
-      // Fetch the updated customer data and set the state variable
-      const updatedData = await getCustomers()
-      setCustomerData(updatedData)
+
+      try {
+         const statusCode = await addCustomer(input)
+         switch (statusCode) {
+            case 409:
+               alert('Customer already exists')
+               return
+            case 200:
+               const updatedData = await getCustomers()
+               setCustomerData(updatedData)
+               break
+            default:
+               break
+         }
+      } catch (error) {
+         console.error(error)
+      }
    }
 
    useEffect(() => {
@@ -38,7 +50,10 @@ function App() {
                   className="add-customer-input"
                   placeholder="Customer Name"
                />
-               <button className="add-customer-button" onClick={handleAddCustomer}>
+               <button
+                  className="add-customer-button"
+                  onClick={handleAddCustomer}
+               >
                   Add
                </button>
             </div>

@@ -183,3 +183,7 @@ display: flex;
 .add-app-button:hover {
   background-color: blueviolet;
 }
+
+#td-buttons {
+  text-align: end;
+}

@@ -92,7 +92,7 @@ function CustomersTable({ customerData }) {
                >
                   <td>{item.name}</td>
                   <td>{lastUpdatedApps[index]} </td>
-                  <td>
+                  <td id="td-buttons">  
                      <button
                         className="delete-btn"
                         onClick={(event) => {

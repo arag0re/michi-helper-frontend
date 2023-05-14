@@ -19,10 +19,8 @@ export async function addCustomer(name) {
       },
       body: JSON.stringify(data),
    })
-      .then((response) => response.json())
-      .then((data) => {
-         console.log(data)
-         return data
+      .then((response) => {
+         return response.status
       })
       .catch((err) => {
          console.log(err)
