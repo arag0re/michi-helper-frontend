@@ -4,6 +4,10 @@
   padding: 20px;
   background-color: #282c34;
   font-family: Arial, sans-serif;
+  width: 90%;
+  padding-left: 5%;
+  padding-right: 5%;
+  padding-top: 10%;
 }
 
 h1 {
@@ -234,4 +238,17 @@ thead th {
   overflow: auto;
   flex: 0;
   background-color: white;
+}
+
+#footer {
+  width: auto;
+  text-align: center;
+  height: 200px;
+  padding: 100px;
+  background-color: #282c34;
+  color: white;
+}
+
+#navbar-h2 {
+  color: white;
 }

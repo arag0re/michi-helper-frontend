@@ -1,5 +1,5 @@
 export async function getCustomers() {
-   return await fetch('/customer/getAll')
+   return await fetch('/api/customer/getAll')
       .then((response) => response.json())
       .then((data) => {
          console.log(data)
@@ -12,7 +12,7 @@ export async function getCustomers() {
 
 export async function addCustomer(name) {
    const data = { name }
-   return await fetch('/customer/add', {
+   return await fetch('/api/customer/add', {
       method: 'POST',
       headers: {
          'Content-Type': 'application/json',
@@ -29,7 +29,7 @@ export async function addCustomer(name) {
 
 export async function deleteCustomer(name) {
    const data = { name }
-   return await fetch('/customer/delete', {
+   return await fetch('/api/customer/delete', {
       method: 'POST',
       headers: {
          'Content-Type': 'application/json',
@@ -48,7 +48,7 @@ export async function deleteCustomer(name) {
 
 export async function getApps(customerName) {
    const data = { customerName }
-   return await fetch('/app/getAll', {
+   return await fetch('/api/app/getAll', {
       method: 'POST',
 
       headers: {
@@ -68,7 +68,7 @@ export async function getApps(customerName) {
 
 export async function addApp(name, customerName) {
    const data = { name, customerName }
-   return await fetch('/app/add', {
+   return await fetch('/api/app/add', {
       method: 'POST',
       headers: {
          'Content-Type': 'application/json',
@@ -87,7 +87,7 @@ export async function addApp(name, customerName) {
 
 export async function updateApp(name, customerName) {
    const data = { name, customerName }
-   return await fetch('/app/update', {
+   return await fetch('/api/app/update', {
       method: 'POST',
       headers: {
          'Content-Type': 'application/json',
@@ -106,7 +106,7 @@ export async function updateApp(name, customerName) {
 
 export async function getApp(appId) {
    const data = { appId }
-   return await fetch('/app/get', {
+   return await fetch('/api/app/get', {
       method: 'POST',
       headers: {
          'Content-Type': 'application/json',
@@ -125,7 +125,7 @@ export async function getApp(appId) {
 
 export async function deleteApp(name, customerName) {
    const data = { name, customerName }
-   return await fetch('/app/delete', {
+   return await fetch('/api/app/delete', {
       method: 'POST',
       headers: {
          'Content-Type': 'application/json',

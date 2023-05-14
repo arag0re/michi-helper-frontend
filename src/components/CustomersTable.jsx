@@ -84,27 +84,33 @@ function CustomersTable({ customerData }) {
             </tr>
          </thead>
          <tbody>
-            {data.map((item, index) => (
-               <tr
-                  id="customers"
-                  key={index}
-                  onClick={() => handleCustomerClick(item)}
-               >
-                  <td>{item.name}</td>
-                  <td>{lastUpdatedApps[index]} </td>
-                  <td id="td-buttons">  
-                     <button
-                        className="delete-btn"
-                        onClick={(event) => {
-                           event.stopPropagation()
-                           handleDeleteCustomer(item)
-                        }}
-                     >
-                        <img id="delete-img" src={deleteImg} alt="delete" />
-                     </button>
-                  </td>
-               </tr>
-            ))}
+            {data
+               ? data.map((item, index) => (
+                    <tr
+                       id="customers"
+                       key={index}
+                       onClick={() => handleCustomerClick(item)}
+                    >
+                       <td>{item.name}</td>
+                       <td>{lastUpdatedApps[index]} </td>
+                       <td id="td-buttons">
+                          <button
+                             className="delete-btn"
+                             onClick={(event) => {
+                                event.stopPropagation()
+                                handleDeleteCustomer(item)
+                             }}
+                          >
+                             <img
+                                id="delete-img"
+                                src={deleteImg}
+                                alt="delete"
+                             />
+                          </button>
+                       </td>
+                    </tr>
+                 ))
+               : 'Loading...'}
          </tbody>
          {selectedCustomer && (
             <Modal

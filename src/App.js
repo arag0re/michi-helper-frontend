@@ -1,6 +1,6 @@
 import './App.css'
-import React, { useState, useEffect, useRef, Router } from 'react'
-import { CustomersTable, Footer } from './components'
+import React, { useState, useEffect, useRef } from 'react'
+import { CustomersTable, Footer, Navbar } from './components'
 import { addCustomer, getCustomers } from './api/api'
 
 function App() {
@@ -50,6 +50,7 @@ function App() {
       <>
          <div className="App">
             <header className="App-header">
+               <Navbar />
                <form className="add-customer-form" onSubmit={handleAddCustomer}>
                   <input
                      type="text"
